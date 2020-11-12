@@ -104,7 +104,7 @@ public class CommentControl {
         String username = principal.getName();
 
         try {
-            comment.setPId(Long.parseLong(parentId.substring(1)));
+            comment.setpId(Long.parseLong(parentId.substring(1)));
             comment.setAnswererId(userService.findIdByUsername(username));
             comment.setRespondentId(userService.findIdByUsername(respondent));
             TimeUtil timeUtil = new TimeUtil();
@@ -160,10 +160,10 @@ public class CommentControl {
             TimeUtil timeUtil = new TimeUtil();
             CommentLikesRecord commentLikesRecord = new CommentLikesRecord(Long.parseLong(articleId),
                     Integer.parseInt(respondentId.substring(1)),userService.findIdByUsername(username),timeUtil.getFormatDateForFive());
-            if(commentLikesRecordService.isLiked(commentLikesRecord.getArticleId(), commentLikesRecord.getPId(), username)){
+            if(commentLikesRecordService.isLiked(commentLikesRecord.getArticleId(), commentLikesRecord.getpId(), username)){
                 return JsonResult.fail(CodeType.MESSAGE_HAS_THUMBS_UP).toJSON();
             }
-            DataMap data = commentService.updateLikeByArticleIdAndId(commentLikesRecord.getArticleId(),commentLikesRecord.getPId());
+            DataMap data = commentService.updateLikeByArticleIdAndId(commentLikesRecord.getArticleId(),commentLikesRecord.getpId());
             commentLikesRecordService.insertCommentLikesRecord(commentLikesRecord);
             return JsonResult.build(data).toJSON();
         } catch (Exception e){

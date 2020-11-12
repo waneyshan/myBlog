@@ -46,7 +46,7 @@ public class GetPhoneCodeControl {
     /**
      * 阿里云短信发送模板
      */
-    private static final String SIGN_NAME = "张海洋ocean";
+    private static final String SIGN_NAME = "ocean";
 
     @PostMapping(value = "/getCode", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public String getAuthCode(@RequestParam("phone") String phone,
@@ -68,12 +68,13 @@ public class GetPhoneCodeControl {
             msgCode = "SMS_139982667";
         }
 
-        try {
-            sendSmsResponse(phone, trueMsgCode, msgCode);
-        } catch (ClientException e) {
-            log.error("[{}] send phone message exception", phone, e);
-            return JsonResult.fail().toJSON();
-        }
+//        try {
+//            System.out.println("");
+////            sendSmsResponse(phone, trueMsgCode, msgCode);
+//        } catch (ClientException e) {
+//            log.error("[{}] send phone message exception", phone, e);
+//            return JsonResult.fail().toJSON();
+//        }
 
         return JsonResult.success().toJSON();
     }

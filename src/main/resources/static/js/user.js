@@ -215,8 +215,8 @@ $('#authCodeBtn').click(function () {
                 }
             });
         } else {
-            dangerNotice("手机号不正确");
-            $('#authCodeBtn').attr('disabled',false);
+            // dangerNotice("手机号不正确");
+            // $('#authCodeBtn').attr('disabled',false);
         }
     }
 

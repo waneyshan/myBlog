@@ -1,5 +1,5 @@
 
-var bloggerReward = "张张张张先森";
+var bloggerReward = "waney";
 
 var deleteArticleId="";
 var friendLinkId="";

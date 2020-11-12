@@ -34,18 +34,20 @@ public class RegisterControl {
     public String register(User user,
                             HttpServletRequest request){
         try {
+
+            System.out.println("90909090"+user);
             String authCode = request.getParameter("authCode");
 
-            String trueMsgCode = (String) stringRedisService.get(user.getPhone());
+//            String trueMsgCode = (String) stringRedisService.get(user.getPhone());
 
-            //判断手机号是否正确
-            if(trueMsgCode == null){
-                return JsonResult.fail(CodeType.PHONE_ERROR).toJSON();
-            }
-            //判断验证码是否正确
-            if(!authCode.equals(trueMsgCode)){
-                return JsonResult.fail(CodeType.AUTH_CODE_ERROR).toJSON();
-            }
+//            //判断手机号是否正确
+//            if(trueMsgCode == null){
+//                return JsonResult.fail(CodeType.PHONE_ERROR).toJSON();
+//            }
+//            //判断验证码是否正确
+//            if(!authCode.equals(trueMsgCode)){
+//                return JsonResult.fail(CodeType.AUTH_CODE_ERROR).toJSON();
+//            }
             //判断用户名是否存在
             if(userService.usernameIsExist(user.getUsername()) || user.getUsername().equals(PrincipalAspect.ANONYMOUS_USER)){
                 return JsonResult.fail(CodeType.USERNAME_EXIST).toJSON();
@@ -56,12 +58,13 @@ public class RegisterControl {
 
             //注册结果
             DataMap data = userService.insert(user);
-            if (0 == data.getCode()){
-                //注册成功删除redis中的验证码
-                stringRedisService.remove(user.getPhone());
-            }
+//            if (0 == data.getCode()){
+//                //注册成功删除redis中的验证码
+////                stringRedisService.remove(user.getPhone());
+//            }
             return JsonResult.build(data).toJSON();
         } catch (Exception e){
+            System.out.println(e.toString());
             log.error("User [{}] register exception", user, e);
         }
         return JsonResult.fail(CodeType.SERVER_EXCEPTION).toJSON();

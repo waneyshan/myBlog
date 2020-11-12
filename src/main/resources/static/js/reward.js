@@ -23,7 +23,7 @@ function getRewardInfo() {
                 $.each(data['data'], function (index,obj) {
                     var fundRaiser = obj['fundRaiser'];
                     var tr = $('<tr id=' + obj['rewardUrl'] +  '></tr>');
-                    if(fundRaiser == "张张张张先森"){
+                    if(fundRaiser == "waney"){
                         tr.append($('<th>'+ fundRaiser +'<span class="is-me am-badge am-badge-danger am-radius am-round">?</span></th>'));
                     } else {
                         tr.append($('<th>'+ fundRaiser +'</th>'));
@@ -48,7 +48,7 @@ function getRewardInfo() {
 
             $(function() {
                 $('.is-me').popover({
-                    content: '来自张先森的工资捐赠',
+                    content: '',
                     trigger:'hover'
                 })
             });

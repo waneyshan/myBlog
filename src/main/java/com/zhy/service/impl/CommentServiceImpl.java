@@ -131,7 +131,7 @@ public class CommentServiceImpl implements CommentService {
 
         for(Comment comment : fiveComments){
             jsonObject = new JSONObject();
-            if(comment.getPId() != 0){
+            if(comment.getpId() != 0){
                 comment.setCommentContent("@" + userService.findUsernameById(comment.getRespondentId()) + " " + comment.getCommentContent());
             }
             jsonObject.put("id",comment.getId());
@@ -169,7 +169,7 @@ public class CommentServiceImpl implements CommentService {
         for(Comment comment : comments){
             commentJson = new JSONObject();
             commentJson.put("id",comment.getId());
-            commentJson.put("pId",comment.getPId());
+            commentJson.put("pId",comment.getpId());
             commentJson.put("articleId",comment.getArticleId());
             commentJson.put("articleTitle",articleService.findArticleTitleByArticleId(comment.getArticleId()).get("articleTitle"));
             commentJson.put("answerer", userService.findUsernameById(comment.getAnswererId()));

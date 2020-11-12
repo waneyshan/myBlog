@@ -91,7 +91,7 @@
                         alert("短信验证码发送成功");
                         timeCount();
                     } else {
-                        alert("短信验证码发送异常");
+                        // alert("短信验证码发送异常");
                     }
 
                 },
@@ -122,7 +122,7 @@
         var username_value = username.val().length;
         var password_value = password.val().length;
         var radio_input = $(".radio_input input");
-        if (phone_value !== 0 && auth_code_value !== 0 && username_value !== 0 && password_value !== 0 && (radio_input[0].checked || radio_input[1].checked)) {
+        if (phone_value !== 0 && username_value !== 0 && password_value !== 0 && (radio_input[0].checked || radio_input[1].checked)) {
             registerFormBtn.removeClass("no_submit");
             registerFormBtn.addClass("yes_submit");
         }
@@ -132,11 +132,11 @@
                 registerFormBtn.removeClass("yes_submit");
                 registerFormBtn.addClass("no_submit");
             }
-            if (auth_code_value === 0) {
-                auth_code_null.css("display","block");
-                registerFormBtn.removeClass("yes_submit");
-                registerFormBtn.addClass("no_submit");
-            }
+            // if (auth_code_value === 0) {
+            //     auth_code_null.css("display","block");
+            //     registerFormBtn.removeClass("yes_submit");
+            //     registerFormBtn.addClass("no_submit");
+            // }
             if (username_value === 0) {
                 username_null.css("display","block");
                 registerFormBtn.removeClass("yes_submit");
@@ -224,7 +224,7 @@
                 },
                 success: function (data) {
                     if(data['status'] == 902){
-                        auth_code_warn.css("display","block");
+                        // auth_code_warn.css("display","block");
                         auth_code_error.css("display","block");
                     } else if(data['status'] == 903){
                         phone_warn.css("display","block");
@@ -233,9 +233,6 @@
                         username_warn.css("display","block");
                     } else if(data['status'] == 507){
                         username_warn1.css("display","block");
-                    } else if(data['status'] == 901){
-                        phone_warn1.css("display","block");
-                        phone_error.css("display","block");
                     } else if (data['status'] == 103){
                         dangerNotice(data['message'] + " 注册失败")
                     } else {
